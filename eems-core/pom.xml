@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.liuxiaobin</groupId>
+    <artifactId>eems</artifactId>
+    <version>0.0.1-RELEASE</version>
+  </parent>
+  <artifactId>eems-core</artifactId>
+  
+  <dependencies>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-web-springmvc</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-service-spring</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-persistent-jdbc</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-web-spring-jxls</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+  </dependencies>
+</project>

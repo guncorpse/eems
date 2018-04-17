@@ -69,4 +69,8 @@
       </testResource>
     </testResources>
   </build>
+  <modules>
+    <module>eems-core</module>
+    <module>eems-webapp</module>
+  </modules>
 </project>
