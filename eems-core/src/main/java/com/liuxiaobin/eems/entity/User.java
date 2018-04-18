@@ -12,7 +12,7 @@ import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
  * @author liuxiaobin
  * @version 0.0.1
  */
-public class FcsUser implements java.io.Serializable {
+public class User implements java.io.Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -153,7 +153,7 @@ public class FcsUser implements java.io.Serializable {
    *            要对比的用户对象。
    * @return true代表两个对象的版本一致，false代表两个对象的版本不一致
    */
-  public boolean checkVersion(FcsUser entity){
+  public boolean checkVersion(User entity){
     if (this == entity) return true;
     if (entity == null || getClass() != entity.getClass()) return false;
     return true;
@@ -165,7 +165,7 @@ public class FcsUser implements java.io.Serializable {
    * @param entity
    *            将被克隆到的目标用户对象。
    */
-  public void cloneThis(FcsUser entity ) {
+  public void cloneThis(User entity ) {
     if (!PropertyUtilities.asNullValue(this.userId)) 
       entity.userId = this.userId;
     if (!PropertyUtilities.asNullValue(this.nickname)) 
@@ -184,8 +184,8 @@ public class FcsUser implements java.io.Serializable {
    * @param entities
    *            将被克隆到的目标用户对象集合。
    */
-  public void cloneThisToCollection(java.util.Collection<FcsUser> entities ) {
-    for(FcsUser entity : entities) {
+  public void cloneThisToCollection(java.util.Collection<User> entities ) {
+    for(User entity : entities) {
       cloneThis(entity);
     }
   }

@@ -5,8 +5,8 @@ USE eems;
 /*==============================================================*/
   --  用户      EEMS_USER
 /*==============================================================*/
-drop table if exists FCS_USER;
-create table FCS_USER(
+drop table if exists EEMS_USER;
+create table EEMS_USER(
     USER_ID                       char(36)            character set utf8 collate utf8_bin    not null comment '用户编号',
     NICKNAME                      varchar(32)         character set utf8 collate utf8_bin    not null comment '用户昵称',
     ACCOUNT                       varchar(32)         character set utf8 collate utf8_bin    not null comment '用户账号',

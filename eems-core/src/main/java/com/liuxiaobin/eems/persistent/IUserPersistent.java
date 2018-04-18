@@ -6,7 +6,7 @@ package com.liuxiaobin.eems.persistent;
 
 import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.FcsUser;
+import com.liuxiaobin.eems.entity.User;
 import com.liuxiaobin.eems.commons.exception.EemsException;
 import java.util.Collection;
 import com.liuxiaobin.eems.search.FcsUserSearch;
@@ -17,7 +17,7 @@ import com.liuxiaobin.eems.search.FcsUserSearch;
  * @author liuxiaobin
  * @version 0.0.1
  */
-public interface IFcsUserPersistent {
+public interface IUserPersistent {
   public static final String THIS_OPERATE_TARGET = "com.liuxiaobin.eems.FcsUser";
 
   /**
@@ -27,7 +27,7 @@ public interface IFcsUserPersistent {
    *            要保存的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void saveFcsUser(FcsUser fcsUser) throws EemsException;
+  public void saveFcsUser(User fcsUser) throws EemsException;
 
   /**
    * 将对象集合保存到数据库 FCS_USER 表中。
@@ -36,7 +36,7 @@ public interface IFcsUserPersistent {
    *            要保存的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchSaveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException;
+  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 修改数据库 FCS_USER 表的记录。
@@ -46,7 +46,7 @@ public interface IFcsUserPersistent {
    *            要修改的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void updateFcsUser(FcsUser fcsUser) throws EemsException;
+  public void updateFcsUser(User fcsUser) throws EemsException;
 
   /**
    * 批量修改数据库 FCS_USER 表的记录。
@@ -56,7 +56,7 @@ public interface IFcsUserPersistent {
    *            要修改的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchUpdateFcsUser(Collection<FcsUser> fcsUsers) throws EemsException;
+  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 根据主键删除数据库 FCS_USER 表的记录。
@@ -65,7 +65,7 @@ public interface IFcsUserPersistent {
    *            要删除的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void removeFcsUser(FcsUser fcsUser) throws EemsException;
+  public void removeFcsUser(User fcsUser) throws EemsException;
 
   /**
    * 根据主键批量删除数据库 FCS_USER 表的记录。
@@ -74,7 +74,7 @@ public interface IFcsUserPersistent {
    *            要删除的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchRemoveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException;
+  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 根据主键查询数据库 FCS_USER 表中的记录，如果未找到将返回NULL。
@@ -84,7 +84,7 @@ public interface IFcsUserPersistent {
    * @return 根据主键查询到的对象，查询不到返回 null
    * @throws EemsException 运行出错会抛出该异常
    */
-  public FcsUser getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException;
+  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException;
 
   /**
    * 根据条件进行查询数据库 FCS_USER 表的记录条数。
@@ -102,7 +102,7 @@ public interface IFcsUserPersistent {
    * @return 返回所有查询到的对象集合
    * @throws EemsException 运行出错会抛出该异常
    */
-  public Collection<FcsUser> getAllFcsUser() throws EemsException;
+  public Collection<User> getAllFcsUser() throws EemsException;
 
   /**
    * 分页查询数据库 FCS_USER 表的所有记录。。
@@ -112,7 +112,7 @@ public interface IFcsUserPersistent {
    * @return 返回当前页数据以及数据总条数等相关信息
    * @throws EemsException 运行出错会抛出该异常
    */
-  public PageRange<FcsUser> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException;
+  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException;
 
   /**
    * 根据条件进行查询数据库 FCS_USER 表的记录。
@@ -123,7 +123,7 @@ public interface IFcsUserPersistent {
    * @return 返回所有查询到的对象集合
    * @throws EemsException 运行出错会抛出该异常
    */
-  public Collection<FcsUser> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException;
+  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException;
 
   /**
    * 根据条件进行，分页查询数据库 FCS_USER 表的记录。
@@ -136,7 +136,7 @@ public interface IFcsUserPersistent {
    * @return 返回当前页数据以及数据总条数等相关信息
    * @throws EemsException 运行出错会抛出该异常
    */
-  public PageRange<FcsUser> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException;
+  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException;
 
   /**
    * 判断用户对象集合当中是否有重复值。
@@ -145,7 +145,7 @@ public interface IFcsUserPersistent {
    *            要判断的用户对象集合。
    * @throws EemsException 如果有重复值将抛出该异常
    */
-  public void isUnique(Collection<FcsUser> fcsUserCollection) throws EemsException;
+  public void isUnique(Collection<User> fcsUserCollection) throws EemsException;
 
   /**
    * 判断用户对象是否唯一。
@@ -154,7 +154,7 @@ public interface IFcsUserPersistent {
    *            要判断的用户对象。
    * @return true 代表当前对象是唯一的，false 代表当前对象不唯一
    */
-  public boolean isUnique(FcsUser fcsUser);
+  public boolean isUnique(User fcsUser);
 
   /**
    * 获取用户对象不唯一的异常消息。
@@ -163,5 +163,5 @@ public interface IFcsUserPersistent {
    *            不唯一的用户对象。
    * @return true 对象不唯一提示消息
    */
-  public String getNotUniqueErrorMessage(FcsUser fcsUser);
+  public String getNotUniqueErrorMessage(User fcsUser);
 }

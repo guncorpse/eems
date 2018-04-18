@@ -5,7 +5,7 @@
 package com.liuxiaobin.eems.search;
 
 import java.io.Serializable;
-import com.liuxiaobin.eems.entity.FcsUser;
+import com.liuxiaobin.eems.entity.User;
 
 /**
  * 用户的查询条件类。
@@ -94,7 +94,7 @@ public final class FcsUserSearch implements Serializable {
     return org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString(this);
   }
 
-  public void setEntity(FcsUser entity) {
+  public void setEntity(User entity) {
     this.nickname = entity.getNickname();
     this.account = entity.getAccount();
     this.password = entity.getPassword();

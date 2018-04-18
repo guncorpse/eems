@@ -10,8 +10,8 @@ import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.nmxpsoft.base.persistent.jdbc.BasePersistent;
 import com.nmxpsoft.base.security.SecurityContext;
 import com.nmxpsoft.base.commons.vo.Sort;
-import com.liuxiaobin.eems.entity.FcsUser;
-import com.liuxiaobin.eems.persistent.IFcsUserPersistent;
+import com.liuxiaobin.eems.entity.User;
+import com.liuxiaobin.eems.persistent.IUserPersistent;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -29,14 +29,14 @@ import com.liuxiaobin.eems.search.FcsUserSearch;
  * @author liuxiaobin
  * @version 0.0.1
  */
-@org.springframework.stereotype.Repository("com.liuxiaobin.eems.FcsUserPersistent")
-public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPersistent {
+@org.springframework.stereotype.Repository("com.liuxiaobin.eems.UserPersistent")
+public class UserPersistentImpl extends BasePersistent implements IUserPersistent {
 
-  private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(FcsUserPersistentImpl.class);
+  private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(UserPersistentImpl.class);
 
 
-  public static final String TABLE_NAME = "FCS_USER";
-  public static final String TABLE_ALIAS = "fcsUser";
+  public static final String TABLE_NAME = "EEMS_USER";
+  public static final String TABLE_ALIAS = "user";
 
   public static final String COLUMN_USER_ID = "USER_ID";
   public static final String COLUMN_NICKNAME = "NICKNAME";
@@ -92,7 +92,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void saveFcsUser(FcsUser fcsUser) throws EemsException {
+  public void saveFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.saveFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -124,7 +124,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void batchSaveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.batchSaveFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -156,7 +156,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void updateFcsUser(FcsUser fcsUser) throws EemsException {
+  public void updateFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.updateFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -188,7 +188,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void batchUpdateFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.batchUpdateFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -220,7 +220,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void removeFcsUser(FcsUser fcsUser) throws EemsException {
+  public void removeFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.removeFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -254,7 +254,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public void batchRemoveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.batchRemoveFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -286,7 +286,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public FcsUser getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
+  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.getFcsUserByPrimaryKey ");
       log.debug("parameter userId is : " + userId);
@@ -299,7 +299,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_USER_ID).append(" = :").append(COLUMNS_PARAMETER.get(COLUMN_USER_ID));
       MapSqlParameterSource paramSource = new MapSqlParameterSource();
       paramSource.addValue(COLUMNS_PARAMETER.get(COLUMN_USER_ID), userId);
-      Collection<FcsUser> fcsUserList = this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+      Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
       return (fcsUserList != null && !fcsUserList.isEmpty() && fcsUserList.size() > 0) ? fcsUserList.iterator().next() : null;
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
@@ -359,7 +359,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public Collection<FcsUser> getAllFcsUser() throws EemsException {
+  public Collection<User> getAllFcsUser() throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.getAllFcsUser ");
     }
@@ -371,11 +371,11 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
           sql.append(" AND ").append(generateKeySearchWhereSql(KEY_SEARCH_COLUMNS, TABLE_ALIAS));
           paramSource.addValue(SEARCH_KEY_PARAMETER, getLikeValue(SecurityContext.getOperateInfo().getSearchKey().trim()));
           appendOrderBy(sql);
-          return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+          return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
         }
       }
       appendOrderBy(sql);
-      return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+      return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
     } catch (org.springframework.dao.DataAccessException e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -393,7 +393,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public PageRange<FcsUser> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.paginationGetAllFcsUser ");
       log.debug("parameter page is : " + page);
@@ -408,7 +408,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
       if (page.getPageSize() < 1) {
         throw EemsException.getException(EemsException.FW_PARAMETER_CONT_LONG_ERROR, new String[] { " page.maxReslut ", " 大于等于1" });
       }
-      PageRange<FcsUser> pageRange = new PageRange<>(page);
+      PageRange<User> pageRange = new PageRange<>(page);
       StringBuilder countSql = new StringBuilder(COUNT_BASE_SQL);
       StringBuilder sql = new StringBuilder(SELECT_BASE_SQL);
       MapSqlParameterSource paramSource = new MapSqlParameterSource();
@@ -422,7 +422,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
           if (count > 0) {
             SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
             appendOrderBy(sql);
-            Collection<FcsUser> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+            Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
             pageRange.setDatas(fcsUserList);
           }
           return pageRange;
@@ -433,7 +433,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
       if (count > 0) {
         SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
         appendOrderBy(sql);
-        Collection<FcsUser> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+        Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
         pageRange.setDatas(fcsUserList);
       }
       return pageRange;
@@ -459,7 +459,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public Collection<FcsUser> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.searchFcsUser ");
       log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
@@ -475,11 +475,11 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
           MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(fcsUserSearch));
           paramSource.addValue(SEARCH_KEY_PARAMETER, getLikeValue(SecurityContext.getOperateInfo().getSearchKey().trim()));
           appendOrderBy(sql);
-          return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+          return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
         }
       }
       appendOrderBy(sql);
-      return this.namedParameterJdbcTemplate.query(sql.toString(), new BeanPropertySqlParameterSource(fcsUserSearch), BeanPropertyRowMapper.newInstance(FcsUser.class));
+      return this.namedParameterJdbcTemplate.query(sql.toString(), new BeanPropertySqlParameterSource(fcsUserSearch), BeanPropertyRowMapper.newInstance(User.class));
     } catch (org.springframework.dao.DataAccessException e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -497,7 +497,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
    * {@inheritDoc}
    */
   @Override
-  public PageRange<FcsUser> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserPersistent.paginationSearchFcsUser ");
       log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
@@ -513,7 +513,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
       if (page.getPageSize() < 1) {
         throw EemsException.getException(EemsException.FW_PARAMETER_CONT_LONG_ERROR, new String[] { " page.maxReslut ", " 大于等于1" });
       }
-      PageRange<FcsUser> pageRange = new PageRange<FcsUser>(page);
+      PageRange<User> pageRange = new PageRange<User>(page);
       StringBuilder countSql = new StringBuilder(COUNT_BASE_SQL);
       StringBuilder sql = new StringBuilder(SELECT_BASE_SQL);
       if (fcsUserSearch != null){
@@ -531,7 +531,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
           if (count > 0) {
             SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
             appendOrderBy(sql);
-            Collection<FcsUser> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+            Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
             pageRange.setDatas(fcsUserList);
           }
           return pageRange;
@@ -542,7 +542,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
       if (count > 0) {
         SqlParameterSource paramSource = super.getPaginationParameter(new BeanPropertySqlParameterSource(fcsUserSearch), page);
         appendOrderBy(sql);
-        Collection<FcsUser> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), paramSource, BeanPropertyRowMapper.newInstance(FcsUser.class));
+        Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
         pageRange.setDatas(fcsUserList);
       }
       return pageRange;
@@ -593,10 +593,10 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
   /**
    * {@inheritDoc}
    */
-  public void isUnique(Collection<FcsUser> fcsUserCollection) throws EemsException{
+  public void isUnique(Collection<User> fcsUserCollection) throws EemsException{
     java.util.Set<String> uniqueSet0 = new java.util.HashSet<String>();
     String value0 = null;
-    for(FcsUser fcsUser : fcsUserCollection) {
+    for(User fcsUser : fcsUserCollection) {
       value0 = "";
       value0 += ("account:" + fcsUser.getAccount());
       if (uniqueSet0.contains(value0)) {
@@ -610,7 +610,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
   /**
    * {@inheritDoc}
    */
-  public boolean isUnique(FcsUser fcsUser) {
+  public boolean isUnique(User fcsUser) {
     StringBuilder sql = new StringBuilder(COUNT_BASE_SQL).append(" AND ");
     sql.append('(');
     sql.append('(');
@@ -627,7 +627,7 @@ public class FcsUserPersistentImpl extends BasePersistent implements IFcsUserPer
   /**
    * {@inheritDoc}
    */
-  public String getNotUniqueErrorMessage(FcsUser fcsUser) {
+  public String getNotUniqueErrorMessage(User fcsUser) {
     StringBuilder message = new StringBuilder("用户已经存在。");
     message.append('[');
     message.append("用户账号").append(':').append(fcsUser.getAccount());

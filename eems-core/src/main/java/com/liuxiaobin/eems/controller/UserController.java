@@ -5,12 +5,12 @@
 package com.liuxiaobin.eems.controller;
 
 import com.liuxiaobin.eems.commons.exception.EemsException;
-import com.liuxiaobin.eems.entity.FcsUser;
+import com.liuxiaobin.eems.entity.User;
 import com.liuxiaobin.eems.search.FcsUserSearch;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.nmxpsoft.web.controller.springmvc.BaseController;
 import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
-import com.liuxiaobin.eems.service.IFcsUserService;
+import com.liuxiaobin.eems.service.IUserService;
 import com.nmxpsoft.base.commons.vo.CommonParameters;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.nmxpsoft.base.commons.vo.ResponseRange;
@@ -36,24 +36,24 @@ public class UserController extends BaseController {
 
   private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(UserController.class);
 
-  @javax.annotation.Resource(name = "com.liuxiaobin.eems.FcsUserService")
-  private IFcsUserService fcsUserService;
+  @javax.annotation.Resource(name = "com.liuxiaobin.eems.UserService")
+  private IUserService userService;
 
 
   @RequestMapping(value = { "single" }, method = { RequestMethod.POST })
   @ResponseBody
-  public ResponseRange<FcsUser> save(CommonParameters commonParameters, @RequestBody FcsUser fcsUser) {
+  public ResponseRange<User> save(CommonParameters commonParameters, @RequestBody User fcsUser) {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserController.save ");
+      log.debug("Staring call UserController.save ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUser is : " + fcsUser);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (fcsUser == null || fcsUser.selfIsNull()) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
       }
-      fcsUserService.saveFcsUser(fcsUser);
+      userService.saveFcsUser(fcsUser);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -65,18 +65,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(method = { RequestMethod.POST })
   @ResponseBody
-  public ResponseRange<FcsUser> batchSave(CommonParameters commonParameters, @RequestBody List<FcsUser> fcsUsers) {
+  public ResponseRange<User> batchSave(CommonParameters commonParameters, @RequestBody List<User> fcsUsers) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.batchSave ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUsers is : " + fcsUsers);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (PropertyUtilities.isEmpty(fcsUsers)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
-      fcsUserService.batchSaveFcsUser(fcsUsers);
+      userService.batchSaveFcsUser(fcsUsers);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -88,18 +88,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(value = { "single" }, method = { RequestMethod.PUT })
   @ResponseBody
-  public ResponseRange<FcsUser> update(CommonParameters commonParameters, @RequestBody FcsUser fcsUser) {
+  public ResponseRange<User> update(CommonParameters commonParameters, @RequestBody User fcsUser) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.update ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUser is : " + fcsUser);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (fcsUser == null || fcsUser.selfIsNull()) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
       }
-      fcsUserService.updateFcsUser(fcsUser);
+      userService.updateFcsUser(fcsUser);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -111,18 +111,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(method = { RequestMethod.PUT })
   @ResponseBody
-  public ResponseRange<FcsUser> batchUpdate(CommonParameters commonParameters, @RequestBody List<FcsUser> fcsUsers) {
+  public ResponseRange<User> batchUpdate(CommonParameters commonParameters, @RequestBody List<User> fcsUsers) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.batchUpdate ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUsers is : " + fcsUsers);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (PropertyUtilities.isEmpty(fcsUsers)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
-      fcsUserService.batchUpdateFcsUser(fcsUsers);
+      userService.batchUpdateFcsUser(fcsUsers);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -134,18 +134,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(value = { "single" }, method = { RequestMethod.DELETE })
   @ResponseBody
-  public ResponseRange<FcsUser> remove(CommonParameters commonParameters, @RequestBody FcsUser fcsUser) {
+  public ResponseRange<User> remove(CommonParameters commonParameters, @RequestBody User fcsUser) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.remove ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUser is : " + fcsUser);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (fcsUser == null || fcsUser.selfIsNull()) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
       }
-      fcsUserService.removeFcsUser(fcsUser);
+      userService.removeFcsUser(fcsUser);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -157,18 +157,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(method = { RequestMethod.DELETE })
   @ResponseBody
-  public ResponseRange<FcsUser> batchRemove(CommonParameters commonParameters, @RequestBody List<FcsUser> fcsUsers) {
+  public ResponseRange<User> batchRemove(CommonParameters commonParameters, @RequestBody List<User> fcsUsers) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.batchRemove ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUsers is : " + fcsUsers);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (PropertyUtilities.isEmpty(fcsUsers)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
-      fcsUserService.batchRemoveFcsUser(fcsUsers);
+      userService.batchRemoveFcsUser(fcsUsers);
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -180,18 +180,18 @@ public class UserController extends BaseController {
 
   @RequestMapping(value = { "/{userId}" }, method = { RequestMethod.GET })
   @ResponseBody
-  public ResponseRange<FcsUser> getByPrimaryKey(CommonParameters commonParameters, @PathVariable java.lang.String userId) {
+  public ResponseRange<User> getByPrimaryKey(CommonParameters commonParameters, @PathVariable java.lang.String userId) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.getByPrimaryKey ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter userId is : " + userId);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (PropertyUtilities.asNullValue(userId)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
       }
-      responseRange.setData(fcsUserService.getFcsUserByPrimaryKey(userId));
+      responseRange.setData(userService.getFcsUserByPrimaryKey(userId));
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -203,25 +203,25 @@ public class UserController extends BaseController {
 
   @RequestMapping(method = { RequestMethod.GET })
   @ResponseBody
-  public ResponseRange<FcsUser> get(CommonParameters commonParameters, FcsUserSearch fcsUserSearch) {
+  public ResponseRange<User> get(CommonParameters commonParameters, FcsUserSearch fcsUserSearch) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.get ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       if (fcsUserSearch == null || fcsUserSearch.selfIsNull()) {
         if (commonParameters.isPageSerach()) {
-          responseRange.setData(fcsUserService.paginationGetAllFcsUser(commonParameters.getPageSerachParameters()));
+          responseRange.setData(userService.paginationGetAllFcsUser(commonParameters.getPageSerachParameters()));
         } else {
-          responseRange.setData(fcsUserService.getAllFcsUser());
+          responseRange.setData(userService.getAllFcsUser());
         }
       } else {
         if (commonParameters.isPageSerach()) {
-          responseRange.setData(fcsUserService.paginationSearchFcsUser(fcsUserSearch, commonParameters.getPageSerachParameters()));
+          responseRange.setData(userService.paginationSearchFcsUser(fcsUserSearch, commonParameters.getPageSerachParameters()));
         } else {
-          responseRange.setData(fcsUserService.searchFcsUser(fcsUserSearch));
+          responseRange.setData(userService.searchFcsUser(fcsUserSearch));
         }
       }
     } catch (Exception e) {
@@ -235,19 +235,19 @@ public class UserController extends BaseController {
 
   @RequestMapping(value = { "import" }, method = { RequestMethod.POST })
   @ResponseBody
-  public ResponseRange<FcsUser> batchImport(CommonParameters commonParameters, FcsUser fcsUser, @RequestParam CommonsMultipartFile importFile) {
+  public ResponseRange<User> batchImport(CommonParameters commonParameters, User fcsUser, @RequestParam CommonsMultipartFile importFile) {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserController.batchImport ");
       log.debug("parameter commonParameters is : " + commonParameters);
       log.debug("parameter fcsUser is : " + fcsUser);
       log.debug("parameter importFile is : " + importFile);
     }
-    ResponseRange<FcsUser> responseRange = new ResponseRange<>();
+    ResponseRange<User> responseRange = new ResponseRange<>();
     try {
       java.io.InputStream inputXML = new java.io.BufferedInputStream(getClass().getResourceAsStream("/template/read/FcsUser.xml"));
       org.jxls.reader.XLSReader mainReader = org.jxls.reader.ReaderBuilder.buildFromXML(inputXML);
       java.io.InputStream inputXLS = new java.io.BufferedInputStream(importFile.getInputStream());
-      java.util.List<FcsUser> fcsUserList = new java.util.LinkedList<>();
+      java.util.List<User> fcsUserList = new java.util.LinkedList<>();
       java.util.Map<String, Object> beans = new java.util.HashMap<>();
       beans.put("fcsUserList", fcsUserList);
       org.jxls.reader.XLSReadStatus readStatus = mainReader.read(inputXLS, beans);
@@ -255,7 +255,7 @@ public class UserController extends BaseController {
         if (fcsUser != null && !fcsUser.selfIsNull()) {
           fcsUser.cloneThisToCollection(fcsUserList);
         }
-        fcsUserService.batchSaveFcsUser(fcsUserList);
+        userService.batchSaveFcsUser(fcsUserList);
       }
     } catch (Exception e) {
       if (log.isErrorEnabled()) {
@@ -276,16 +276,16 @@ public class UserController extends BaseController {
     }
     org.springframework.http.ResponseEntity<byte[]> response = null;
     try {
-      List<PageRange<FcsUser>> pageRangeList = new java.util.LinkedList<>();
+      List<PageRange<User>> pageRangeList = new java.util.LinkedList<>();
       List<String> sheetNames = new java.util.LinkedList<>();
       if (fcsUserSearch == null || fcsUserSearch.selfIsNull()) {
         PageSerachParameters page = new PageSerachParameters();
         page.setPageSize(60000l);
         long pageIndex = 1;
-        PageRange<FcsUser> pageRange = null;
+        PageRange<User> pageRange = null;
         do {
           page.setPageNumber(pageIndex);
-          pageRange = fcsUserService.paginationGetAllFcsUser(page);
+          pageRange = userService.paginationGetAllFcsUser(page);
           pageRangeList.add(pageRange);
           sheetNames.add("第" + pageIndex + "页");
           pageIndex++;
@@ -294,10 +294,10 @@ public class UserController extends BaseController {
         PageSerachParameters page = new PageSerachParameters();
         page.setPageSize(60000l);
         long pageIndex = 1;
-        PageRange<FcsUser> pageRange = null;
+        PageRange<User> pageRange = null;
         do {
           page.setPageNumber(pageIndex);
-          pageRange = fcsUserService.paginationSearchFcsUser(fcsUserSearch, commonParameters.getPageSerachParameters());
+          pageRange = userService.paginationSearchFcsUser(fcsUserSearch, commonParameters.getPageSerachParameters());
           pageRangeList.add(pageRange);
           sheetNames.add("第" + pageIndex + "页");
           pageIndex++;

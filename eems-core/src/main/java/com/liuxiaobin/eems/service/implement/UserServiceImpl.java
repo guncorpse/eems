@@ -4,12 +4,12 @@
  */
 package com.liuxiaobin.eems.service.implement;
 
-import com.liuxiaobin.eems.service.IFcsUserService;
+import com.liuxiaobin.eems.service.IUserService;
 import com.liuxiaobin.eems.commons.exception.EemsException;
-import com.liuxiaobin.eems.persistent.IFcsUserPersistent;
+import com.liuxiaobin.eems.persistent.IUserPersistent;
 import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.FcsUser;
+import com.liuxiaobin.eems.entity.User;
 import java.util.Collection;
 import com.liuxiaobin.eems.search.FcsUserSearch;
 import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
@@ -22,14 +22,14 @@ import com.nmxpsoft.base.commons.utilities.StringUtilities;
  * @author liuxiaobin
  * @version 0.0.1
  */
-@org.springframework.stereotype.Service("com.liuxiaobin.eems.FcsUserService")
+@org.springframework.stereotype.Service("com.liuxiaobin.eems.UserService")
 @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.NOT_SUPPORTED, readOnly = true, rollbackFor = java.lang.Exception.class)
-public class FcsUserServiceImpl implements IFcsUserService {
+public class UserServiceImpl implements IUserService {
 
-  private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(FcsUserServiceImpl.class);
+  private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(UserServiceImpl.class);
 
-  @javax.annotation.Resource(name = "com.liuxiaobin.eems.FcsUserPersistent")
-  private IFcsUserPersistent fcsUserPersistent;
+  @javax.annotation.Resource(name = "com.liuxiaobin.eems.UserPersistent")
+  private IUserPersistent fcsUserPersistent;
 
   @org.springframework.beans.factory.annotation.Autowired
   protected org.springframework.context.ApplicationEventPublisher publisher;
@@ -39,7 +39,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void saveFcsUser(FcsUser fcsUser) throws EemsException {
+  public void saveFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.saveFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -75,7 +75,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchSaveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.batchSaveFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -84,7 +84,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
       if (PropertyUtilities.isEmpty(fcsUsers)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
-      for(FcsUser fcsUser : fcsUsers) {
+      for(User fcsUser : fcsUsers) {
         if(PropertyUtilities.isEmpty(fcsUser) || fcsUser.selfIsNull()) {
           throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
         }
@@ -116,7 +116,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void updateFcsUser(FcsUser fcsUser) throws EemsException {
+  public void updateFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.updateFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -128,7 +128,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
       if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
       }
-      FcsUser fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
+      User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
       if (fcsUserOld == null) {
         throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
       }
@@ -154,7 +154,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchUpdateFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.batchUpdateFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -164,14 +164,14 @@ public class FcsUserServiceImpl implements IFcsUserService {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
       fcsUserPersistent.isUnique(fcsUsers);
-      for(FcsUser fcsUser : fcsUsers) {
+      for(User fcsUser : fcsUsers) {
         if(PropertyUtilities.isEmpty(fcsUser) || fcsUser.selfIsNull()) {
           throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
         }
         if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
           throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
         }
-        FcsUser fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
+        User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
         if (fcsUserOld == null) {
           throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
         }
@@ -198,7 +198,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void removeFcsUser(FcsUser fcsUser) throws EemsException {
+  public void removeFcsUser(User fcsUser) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.removeFcsUser ");
       log.debug("parameter fcsUser is : " + fcsUser);
@@ -207,9 +207,9 @@ public class FcsUserServiceImpl implements IFcsUserService {
       if (fcsUser == null || fcsUser.selfIsNull()) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
       }
-      java.util.Set<FcsUser> deleteFcsUsers = new java.util.LinkedHashSet<>();
+      java.util.Set<User> deleteFcsUsers = new java.util.LinkedHashSet<>();
       if (!PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-        FcsUser fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
+        User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
         if (fcsUserOld == null ) {
           throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
         }
@@ -240,7 +240,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchRemoveFcsUser(Collection<FcsUser> fcsUsers) throws EemsException {
+  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.batchRemoveFcsUser ");
       log.debug("parameter fcsUsers is : " + fcsUsers);
@@ -249,10 +249,10 @@ public class FcsUserServiceImpl implements IFcsUserService {
       if (PropertyUtilities.isEmpty(fcsUsers)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
       }
-      java.util.Set<FcsUser> deleteFcsUsers = new java.util.LinkedHashSet<>();
-      for(FcsUser fcsUser : fcsUsers) {
+      java.util.Set<User> deleteFcsUsers = new java.util.LinkedHashSet<>();
+      for(User fcsUser : fcsUsers) {
         if (!PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-          FcsUser fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
+          User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
           if (fcsUserOld == null ) {
             throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
           }
@@ -283,7 +283,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    * {@inheritDoc}
    */
   @Override
-  public FcsUser getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
+  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.getFcsUserByPrimaryKey ");
       log.debug("parameter userId is : " + userId);
@@ -334,7 +334,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    * {@inheritDoc}
    */
   @Override
-  public Collection<FcsUser> getAllFcsUser() throws EemsException {
+  public Collection<User> getAllFcsUser() throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.getAllFcsUser ");
     }
@@ -357,7 +357,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    * {@inheritDoc}
    */
   @Override
-  public PageRange<FcsUser> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.paginationGetAllFcsUser ");
       log.debug("parameter page is : " + page);
@@ -384,7 +384,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    * {@inheritDoc}
    */
   @Override
-  public Collection<FcsUser> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.searchFcsUser ");
       log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
@@ -408,7 +408,7 @@ public class FcsUserServiceImpl implements IFcsUserService {
    * {@inheritDoc}
    */
   @Override
-  public PageRange<FcsUser> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
       log.debug("Staring call FcsUserService.paginationSearchFcsUser ");
       log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
