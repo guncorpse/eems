@@ -4,10 +4,12 @@
  */
 package com.liuxiaobin.eems.service.implement;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 import com.liuxiaobin.eems.commons.exception.EemsException;
 import com.liuxiaobin.eems.entity.Staff;
+import com.liuxiaobin.eems.entity.Wage;
 import com.liuxiaobin.eems.persistent.IJcRecordingPersistent;
 import com.liuxiaobin.eems.persistent.IStaffPersistent;
 import com.liuxiaobin.eems.persistent.IWagePersistent;

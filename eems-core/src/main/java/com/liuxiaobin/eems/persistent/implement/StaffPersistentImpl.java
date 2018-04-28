@@ -40,6 +40,8 @@ public class StaffPersistentImpl extends BasePersistent implements IStaffPersist
 
   public static final String COLUMN_STAFF_ID = "STAFF_ID";
   public static final String COLUMN_NAME = "NAME";
+  public static final String COLUMN_SEX = "SEX";
+  public static final String COLUMN_BASE_AMOUNT = "BASE_AMOUNT";
   public static final String COLUMN_ACCOUNT = "ACCOUNT";
   public static final String COLUMN_PASSWORD = "PASSWORD";
   public static final String COLUMN_PHONEN = "PHONEN";
@@ -66,7 +68,9 @@ public class StaffPersistentImpl extends BasePersistent implements IStaffPersist
   static {
     COLUMNS.add(COLUMN_STAFF_ID);
     COLUMNS.add(COLUMN_NAME);
+    COLUMNS.add(COLUMN_SEX);
     COLUMNS.add(COLUMN_ACCOUNT);
+    COLUMNS.add(COLUMN_BASE_AMOUNT);
     COLUMNS.add(COLUMN_PASSWORD);
     COLUMNS.add(COLUMN_PHONEN);
     COLUMNS.add(COLUMN_ADDRESS);
@@ -77,7 +81,9 @@ public class StaffPersistentImpl extends BasePersistent implements IStaffPersist
 
     COLUMNS_PARAMETER.put(COLUMN_STAFF_ID , "staffId");
     COLUMNS_PARAMETER.put(COLUMN_NAME , "name");
+    COLUMNS_PARAMETER.put(COLUMN_SEX , "sex");
     COLUMNS_PARAMETER.put(COLUMN_ACCOUNT , "account");
+    COLUMNS_PARAMETER.put(COLUMN_BASE_AMOUNT , "baseAmount");
     COLUMNS_PARAMETER.put(COLUMN_PASSWORD , "password");
     COLUMNS_PARAMETER.put(COLUMN_PHONEN , "phonen");
     COLUMNS_PARAMETER.put(COLUMN_ADDRESS , "address");
@@ -643,9 +649,9 @@ public class StaffPersistentImpl extends BasePersistent implements IStaffPersist
     sql.append('(');
     sql.append('(');
     sql.append(" ( ");
-    sql.append(TABLE_ALIAS).append('.').append(COLUMN_ACCOUNT).append(" = ").append(':').append(COLUMNS_PARAMETER.get(COLUMN_ACCOUNT));
+    sql.append(TABLE_ALIAS).append('.').append(COLUMN_PHONEN).append(" = ").append(':').append(COLUMNS_PARAMETER.get(COLUMN_PHONEN));
     sql.append(" OR ");
-    sql.append(TABLE_ALIAS).append('.').append(COLUMN_ACCOUNT).append(" IS NULL ");
+    sql.append(TABLE_ALIAS).append('.').append(COLUMN_PHONEN).append(" IS NULL ");
     sql.append(" ) ");
     sql.append(')');
     sql.append(" ) ");
@@ -660,9 +666,9 @@ public class StaffPersistentImpl extends BasePersistent implements IStaffPersist
    * {@inheritDoc}
    */
   public String getNotUniqueErrorMessage(Staff staff) {
-    StringBuilder message = new StringBuilder("员工已经存在。");
+    StringBuilder message = new StringBuilder("此手机号已经存在。");
     message.append('[');
-    message.append("员工账号").append(':').append(staff.getAccount());
+    message.append("员工手机号").append(':').append(staff.getPhonen());
     message.append(']');
     return message.toString();
   }

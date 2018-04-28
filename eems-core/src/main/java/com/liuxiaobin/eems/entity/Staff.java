@@ -4,6 +4,8 @@
  */
 package com.liuxiaobin.eems.entity;
 
+import java.math.BigDecimal;
+
 import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 
 /**
@@ -19,8 +21,12 @@ public class Staff implements java.io.Serializable {
   protected java.lang.String staffId; // 员工编号
 
   protected java.lang.String name; // 员工名称
+  
+  protected java.lang.String sex; // 员工性别
 
   protected java.lang.String account; // 员工账号
+  
+  protected BigDecimal baseAmount; // 员工账号
 
   protected java.lang.String password; // 员工密码
 
@@ -51,6 +57,15 @@ public class Staff implements java.io.Serializable {
   public final void setStaffId(java.lang.String staffId) {
     this.staffId = staffId;
   }
+  
+
+  public BigDecimal getBaseAmount() {
+    return baseAmount;
+  }
+
+  public void setBaseAmount(BigDecimal baseAmount) {
+    this.baseAmount = baseAmount;
+  }
 
   /**
    * 返回员工对象的员工名称的值。
@@ -68,6 +83,14 @@ public class Staff implements java.io.Serializable {
    */
   public final void setName(java.lang.String name) {
     this.name = name;
+  }
+  
+  public java.lang.String getSex() {
+    return sex;
+  }
+
+  public void setSex(java.lang.String sex) {
+    this.sex = sex;
   }
 
   /**
@@ -220,7 +243,9 @@ public class Staff implements java.io.Serializable {
   public boolean selfIsNull() {
     if(this.staffId != null ) { return false; }
     if(this.name != null ) { return false; }
+    if(this.sex != null ) { return false; }
     if(this.account != null ) { return false; }
+    if(this.baseAmount != null ) { return false; }
     if(this.password != null ) { return false; }
     if(this.phonen != null ) { return false; }
     if(this.address != null ) { return false; }
@@ -254,8 +279,12 @@ public class Staff implements java.io.Serializable {
       entity.staffId = this.staffId;
     if (!PropertyUtilities.asNullValue(this.name)) 
       entity.name = this.name;
+    if (!PropertyUtilities.asNullValue(this.sex)) 
+      entity.sex = this.sex;
     if (!PropertyUtilities.asNullValue(this.account)) 
       entity.account = this.account;
+    if (this.baseAmount != null) 
+      entity.baseAmount = this.baseAmount;
     if (!PropertyUtilities.asNullValue(this.password)) 
       entity.password = this.password;
     if (!PropertyUtilities.asNullValue(this.phonen)) 

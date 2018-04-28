@@ -4,24 +4,33 @@
  */
 package com.liuxiaobin.eems.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jxls.expression.JexlExpressionEvaluator;
+import org.jxls.transform.Transformer;
+import org.jxls.util.JxlsHelper;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import com.liuxiaobin.eems.commons.exception.EemsException;
 import com.liuxiaobin.eems.entity.Wage;
 import com.liuxiaobin.eems.search.WageSearch;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.nmxpsoft.web.controller.springmvc.BaseController;
-import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.liuxiaobin.eems.service.IWageService;
+import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.nmxpsoft.base.commons.vo.CommonParameters;
-import org.springframework.web.bind.annotation.RequestMethod;
-import com.nmxpsoft.base.commons.vo.ResponseRange;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.List;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.nmxpsoft.base.commons.vo.PageSerachParameters;
 import com.nmxpsoft.base.commons.vo.PageRange;
+import com.nmxpsoft.base.commons.vo.PageSerachParameters;
+import com.nmxpsoft.base.commons.vo.ResponseRange;
+import com.nmxpsoft.web.controller.springmvc.BaseController;
 
 /**
  * 该类是工资控制器。
@@ -276,43 +285,37 @@ public class WageController extends BaseController {
     }
     org.springframework.http.ResponseEntity<byte[]> response = null;
     try {
-      List<PageRange<Wage>> pageRangeList = new java.util.LinkedList<>();
+      PageRange<Wage> pageRange = new PageRange<>();
       List<String> sheetNames = new java.util.LinkedList<>();
       if (wageSearch == null || wageSearch.selfIsNull()) {
         PageSerachParameters page = new PageSerachParameters();
         page.setPageSize(60000l);
         long pageIndex = 1;
-        PageRange<Wage> pageRange = null;
-        do {
-          page.setPageNumber(pageIndex);
-          pageRange = wageService.paginationGetAllWage(page);
-          pageRangeList.add(pageRange);
-          sheetNames.add("第" + pageIndex + "页");
-          pageIndex++;
-        } while (pageRange.getPageCount() >= pageIndex);
+        page.setPageNumber(pageIndex);
+        pageRange = wageService.paginationGetAllWage(page);
       } else {
         PageSerachParameters page = new PageSerachParameters();
         page.setPageSize(60000l);
         long pageIndex = 1;
-        PageRange<Wage> pageRange = null;
-        do {
-          page.setPageNumber(pageIndex);
-          pageRange = wageService.paginationSearchWage(wageSearch, commonParameters.getPageSerachParameters());
-          pageRangeList.add(pageRange);
-          sheetNames.add("第" + pageIndex + "页");
-          pageIndex++;
-        } while (pageRange.getPageCount() >= pageIndex);
+        page.setPageNumber(pageIndex);
+        pageRange = wageService.paginationSearchWage(wageSearch, commonParameters.getPageSerachParameters());
       }
       java.io.InputStream is = this.getClass().getResourceAsStream("/template/write/Wage.xls");
       org.jxls.common.Context context = new org.jxls.common.Context();
-      context.putVar("pageRangeSet", pageRangeList);
+      context.putVar("pageRangeSet", pageRange);
       context.putVar("sheetNames", sheetNames);
       java.io.ByteArrayOutputStream os = new java.io.ByteArrayOutputStream();
-      org.jxls.util.JxlsHelper.getInstance().processTemplate(is,os, context);
+      JxlsHelper jxlsHelper = JxlsHelper.getInstance();
+      Transformer transformer  = jxlsHelper.createTransformer(is, os);
+      JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator)transformer.getTransformationConfig().getExpressionEvaluator();
+      Map<String, Object> funcs = new HashMap<String, Object>();
+      funcs.put("utils", new WageController()); //添加自定义功能
+      evaluator.getJexlEngine().setFunctions(funcs);
+      jxlsHelper.processTemplate(context, transformer);
       org.springframework.http.HttpHeaders headers= new org.springframework.http.HttpHeaders();
       byte[] by= os.toByteArray(); 
       headers.setContentType(org.springframework.http.MediaType.APPLICATION_OCTET_STREAM);
-      headers.setContentDispositionFormData("attachment",java.net.URLEncoder.encode("工资.xls", "UTF-8"));
+      headers.setContentDispositionFormData("attachment",java.net.URLEncoder.encode("工资报表.xls", "UTF-8"));
       headers.setContentLength(by.length);
       response= new org.springframework.http.ResponseEntity<byte[]>(by, headers, org.springframework.http.HttpStatus.OK);
     } catch (Exception e) {
@@ -322,5 +325,13 @@ public class WageController extends BaseController {
     }
     return response;
   }
+  
+  public String stampToDate(Long s){
+    String res;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date date = new Date(s);
+    res = simpleDateFormat.format(date);
+    return res;
+}
 
 }

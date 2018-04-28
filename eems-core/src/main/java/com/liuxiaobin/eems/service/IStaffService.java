@@ -4,12 +4,14 @@
  */
 package com.liuxiaobin.eems.service;
 
+import java.math.BigDecimal;
+import java.util.Collection;
+
 import com.liuxiaobin.eems.commons.exception.EemsException;
+import com.liuxiaobin.eems.entity.Staff;
+import com.liuxiaobin.eems.search.StaffSearch;
 import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.Staff;
-import java.util.Collection;
-import com.liuxiaobin.eems.search.StaffSearch;
 
 /**
  * 该接口是对以下对象操作的接口。

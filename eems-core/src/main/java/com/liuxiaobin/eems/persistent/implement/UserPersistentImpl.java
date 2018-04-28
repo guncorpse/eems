@@ -21,7 +21,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import com.liuxiaobin.eems.commons.exception.EemsException;
 import java.util.Collection;
-import com.liuxiaobin.eems.search.FcsUserSearch;
+import com.liuxiaobin.eems.search.UserSearch;
 
 /**
  * 该类是完成对数据库表FCS_USER的持久化实现，包括对该表的增、删、改、查等基本操作的的具休实现。
@@ -92,16 +92,16 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void saveFcsUser(User fcsUser) throws EemsException {
+  public void saveUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.saveFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserPersistent.saveUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
-      this.namedParameterJdbcTemplate.update(INSERT_SQL.toString(), new BeanPropertySqlParameterSource(fcsUser));
+      this.namedParameterJdbcTemplate.update(INSERT_SQL.toString(), new BeanPropertySqlParameterSource(user));
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -124,16 +124,16 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchSaveUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.batchSaveFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserPersistent.batchSaveUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      this.namedParameterJdbcTemplate.batchUpdate(INSERT_SQL.toString(), SqlParameterSourceUtils.createBatch(fcsUsers.toArray()));
+      this.namedParameterJdbcTemplate.batchUpdate(INSERT_SQL.toString(), SqlParameterSourceUtils.createBatch(users.toArray()));
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -156,16 +156,16 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void updateFcsUser(User fcsUser) throws EemsException {
+  public void updateUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.updateFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserPersistent.updateUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
-      this.namedParameterJdbcTemplate.update(UPDATE_SQL.toString(), new BeanPropertySqlParameterSource(fcsUser));
+      this.namedParameterJdbcTemplate.update(UPDATE_SQL.toString(), new BeanPropertySqlParameterSource(user));
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -188,16 +188,16 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchUpdateUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.batchUpdateFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserPersistent.batchUpdateUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      this.namedParameterJdbcTemplate.batchUpdate(UPDATE_SQL.toString(), SqlParameterSourceUtils.createBatch(fcsUsers.toArray()));
+      this.namedParameterJdbcTemplate.batchUpdate(UPDATE_SQL.toString(), SqlParameterSourceUtils.createBatch(users.toArray()));
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -220,17 +220,17 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void removeFcsUser(User fcsUser) throws EemsException {
+  public void removeUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.removeFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserPersistent.removeUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
       MapSqlParameterSource paramSource = new MapSqlParameterSource();
-      paramSource.addValue("userId", fcsUser.getUserId());
+      paramSource.addValue("userId", user.getUserId());
       this.namedParameterJdbcTemplate.update(DELETE_SQL_BY_PRIMARY_KEY.toString(), paramSource);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
@@ -254,16 +254,16 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchRemoveUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.batchRemoveFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserPersistent.batchRemoveUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      this.namedParameterJdbcTemplate.batchUpdate(DELETE_SQL_BY_PRIMARY_KEY.toString(), SqlParameterSourceUtils.createBatch(fcsUsers.toArray()));
+      this.namedParameterJdbcTemplate.batchUpdate(DELETE_SQL_BY_PRIMARY_KEY.toString(), SqlParameterSourceUtils.createBatch(users.toArray()));
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -286,9 +286,9 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
+  public User getUserByPrimaryKey(java.lang.String userId) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.getFcsUserByPrimaryKey ");
+      log.debug("Staring call UserPersistent.getUserByPrimaryKey ");
       log.debug("parameter userId is : " + userId);
     }
     try {
@@ -299,8 +299,8 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_USER_ID).append(" = :").append(COLUMNS_PARAMETER.get(COLUMN_USER_ID));
       MapSqlParameterSource paramSource = new MapSqlParameterSource();
       paramSource.addValue(COLUMNS_PARAMETER.get(COLUMN_USER_ID), userId);
-      Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
-      return (fcsUserList != null && !fcsUserList.isEmpty() && fcsUserList.size() > 0) ? fcsUserList.iterator().next() : null;
+      Collection<User> userList = this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
+      return (userList != null && !userList.isEmpty() && userList.size() > 0) ? userList.iterator().next() : null;
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -323,25 +323,25 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public Long getCountFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Long getCountUser(UserSearch userSearch) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.getCountFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserPersistent.getCountUser ");
+      log.debug("parameter userSearch is : " + userSearch);
     }
     try {
       StringBuilder countSql = new StringBuilder(COUNT_BASE_SQL);
-      if (fcsUserSearch != null){
-        buildObjectValueIsNotNullOfSql(countSql, fcsUserSearch);
+      if (userSearch != null){
+        buildObjectValueIsNotNullOfSql(countSql, userSearch);
       }
       if (SecurityContext.getOperateInfo() != null && THIS_OPERATE_TARGET.equals(SecurityContext.getOperateInfo().getOperateTarget())) {
         if (SecurityContext.getOperateInfo().getSearchKey() != null && !SecurityContext.getOperateInfo().getSearchKey().trim().isEmpty()) {
           countSql.append(" AND ").append(generateKeySearchWhereSql(KEY_SEARCH_COLUMNS, TABLE_ALIAS));
-          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(fcsUserSearch));
+          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(userSearch));
           paramSource.addValue(SEARCH_KEY_PARAMETER, getLikeValue(SecurityContext.getOperateInfo().getSearchKey().trim()));
           return this.namedParameterJdbcTemplate.queryForObject(countSql.toString(), paramSource, Long.class);
         }
       }
-      return this.namedParameterJdbcTemplate.queryForObject(countSql.toString(), new BeanPropertySqlParameterSource(fcsUserSearch), Long.class);
+      return this.namedParameterJdbcTemplate.queryForObject(countSql.toString(), new BeanPropertySqlParameterSource(userSearch), Long.class);
     } catch (org.springframework.dao.DataAccessException e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -359,9 +359,9 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public Collection<User> getAllFcsUser() throws EemsException {
+  public Collection<User> getAllUser() throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.getAllFcsUser ");
+      log.debug("Staring call UserPersistent.getAllUser ");
     }
     try {
       StringBuilder sql = new StringBuilder(SELECT_BASE_SQL);
@@ -393,9 +393,9 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationGetAllUser(PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.paginationGetAllFcsUser ");
+      log.debug("Staring call UserPersistent.paginationGetAllUser ");
       log.debug("parameter page is : " + page);
     }
     try {
@@ -422,8 +422,8 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
           if (count > 0) {
             SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
             appendOrderBy(sql);
-            Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
-            pageRange.setDatas(fcsUserList);
+            Collection<User> userList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
+            pageRange.setDatas(userList);
           }
           return pageRange;
         }
@@ -433,8 +433,8 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
       if (count > 0) {
         SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
         appendOrderBy(sql);
-        Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
-        pageRange.setDatas(fcsUserList);
+        Collection<User> userList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
+        pageRange.setDatas(userList);
       }
       return pageRange;
     } catch (EemsException e) {
@@ -459,27 +459,27 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Collection<User> searchUser(UserSearch userSearch) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.searchFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserPersistent.searchUser ");
+      log.debug("parameter userSearch is : " + userSearch);
     }
     try {
       StringBuilder sql = new StringBuilder(SELECT_BASE_SQL);
-      if (fcsUserSearch != null){
-        buildObjectValueIsNotNullOfSql(sql, fcsUserSearch);
+      if (userSearch != null){
+        buildObjectValueIsNotNullOfSql(sql, userSearch);
       }
       if (SecurityContext.getOperateInfo() != null && THIS_OPERATE_TARGET.equals(SecurityContext.getOperateInfo().getOperateTarget())){
         if (SecurityContext.getOperateInfo().getSearchKey() != null && !SecurityContext.getOperateInfo().getSearchKey().trim().isEmpty()) {
           sql.append(" AND ").append(generateKeySearchWhereSql(KEY_SEARCH_COLUMNS, TABLE_ALIAS));
-          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(fcsUserSearch));
+          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(userSearch));
           paramSource.addValue(SEARCH_KEY_PARAMETER, getLikeValue(SecurityContext.getOperateInfo().getSearchKey().trim()));
           appendOrderBy(sql);
           return this.namedParameterJdbcTemplate.query(sql.toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
         }
       }
       appendOrderBy(sql);
-      return this.namedParameterJdbcTemplate.query(sql.toString(), new BeanPropertySqlParameterSource(fcsUserSearch), BeanPropertyRowMapper.newInstance(User.class));
+      return this.namedParameterJdbcTemplate.query(sql.toString(), new BeanPropertySqlParameterSource(userSearch), BeanPropertyRowMapper.newInstance(User.class));
     } catch (org.springframework.dao.DataAccessException e) {
       if (log.isErrorEnabled()) {
         log.error(e.getMessage(), e);
@@ -497,10 +497,10 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
    * {@inheritDoc}
    */
   @Override
-  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationSearchUser(UserSearch userSearch, PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserPersistent.paginationSearchFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserPersistent.paginationSearchUser ");
+      log.debug("parameter userSearch is : " + userSearch);
       log.debug("parameter page is : " + page);
     }
     try {
@@ -516,34 +516,34 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
       PageRange<User> pageRange = new PageRange<User>(page);
       StringBuilder countSql = new StringBuilder(COUNT_BASE_SQL);
       StringBuilder sql = new StringBuilder(SELECT_BASE_SQL);
-      if (fcsUserSearch != null){
-        buildObjectValueIsNotNullOfSql(countSql, fcsUserSearch);
-        buildObjectValueIsNotNullOfSql(sql, fcsUserSearch);
+      if (userSearch != null){
+        buildObjectValueIsNotNullOfSql(countSql, userSearch);
+        buildObjectValueIsNotNullOfSql(sql, userSearch);
       }
       if (SecurityContext.getOperateInfo() != null && THIS_OPERATE_TARGET.equals(SecurityContext.getOperateInfo().getOperateTarget())){
         if (SecurityContext.getOperateInfo().getSearchKey() != null && !SecurityContext.getOperateInfo().getSearchKey().trim().isEmpty()) {
           countSql.append(" AND ").append(generateKeySearchWhereSql(KEY_SEARCH_COLUMNS, TABLE_ALIAS));
           sql.append(" AND ").append(generateKeySearchWhereSql(KEY_SEARCH_COLUMNS, TABLE_ALIAS));
-          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(fcsUserSearch));
+          MapSqlParameterSource paramSource = getMapSqlParameterSource(new BeanPropertySqlParameterSource(userSearch));
           paramSource.addValue(SEARCH_KEY_PARAMETER, getLikeValue(SecurityContext.getOperateInfo().getSearchKey().trim()));
           Long count = this.namedParameterJdbcTemplate.queryForObject(countSql.toString(), paramSource, Long.class);
           pageRange.setTotalCount(count);
           if (count > 0) {
             SqlParameterSource pageParamSource = super.getPaginationParameter(paramSource, page);
             appendOrderBy(sql);
-            Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
-            pageRange.setDatas(fcsUserList);
+            Collection<User> userList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), pageParamSource, BeanPropertyRowMapper.newInstance(User.class));
+            pageRange.setDatas(userList);
           }
           return pageRange;
         }
       }
-      Long count = this.namedParameterJdbcTemplate.queryForObject(countSql.toString(),new BeanPropertySqlParameterSource(fcsUserSearch), Long.class);
+      Long count = this.namedParameterJdbcTemplate.queryForObject(countSql.toString(),new BeanPropertySqlParameterSource(userSearch), Long.class);
       pageRange.setTotalCount(count);
       if (count > 0) {
-        SqlParameterSource paramSource = super.getPaginationParameter(new BeanPropertySqlParameterSource(fcsUserSearch), page);
+        SqlParameterSource paramSource = super.getPaginationParameter(new BeanPropertySqlParameterSource(userSearch), page);
         appendOrderBy(sql);
-        Collection<User> fcsUserList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
-        pageRange.setDatas(fcsUserList);
+        Collection<User> userList = this.namedParameterJdbcTemplate.query(super.getPaginationBySimpleSql(sql).toString(), paramSource, BeanPropertyRowMapper.newInstance(User.class));
+        pageRange.setDatas(userList);
       }
       return pageRange;
     } catch (EemsException e) {
@@ -578,14 +578,14 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
     }
   }
 
-  private final void buildObjectValueIsNotNullOfSql(StringBuilder sql, FcsUserSearch fcsUserSearch) {
-    if (!PropertyUtilities.asNullValue(fcsUserSearch.getNickname())) {
+  private final void buildObjectValueIsNotNullOfSql(StringBuilder sql, UserSearch userSearch) {
+    if (!PropertyUtilities.asNullValue(userSearch.getNickname())) {
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_NICKNAME).append(" = :nickname");
     }
-    if (!PropertyUtilities.asNullValue(fcsUserSearch.getAccount())) {
+    if (!PropertyUtilities.asNullValue(userSearch.getAccount())) {
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_ACCOUNT).append(" = :account");
     }
-    if (!PropertyUtilities.asNullValue(fcsUserSearch.getPassword())) {
+    if (!PropertyUtilities.asNullValue(userSearch.getPassword())) {
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_PASSWORD).append(" = :password");
     }
   }
@@ -593,14 +593,14 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
   /**
    * {@inheritDoc}
    */
-  public void isUnique(Collection<User> fcsUserCollection) throws EemsException{
+  public void isUnique(Collection<User> userCollection) throws EemsException{
     java.util.Set<String> uniqueSet0 = new java.util.HashSet<String>();
     String value0 = null;
-    for(User fcsUser : fcsUserCollection) {
+    for(User user : userCollection) {
       value0 = "";
-      value0 += ("account:" + fcsUser.getAccount());
+      value0 += ("account:" + user.getAccount());
       if (uniqueSet0.contains(value0)) {
-        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { this.getNotUniqueErrorMessage(fcsUser)});
+        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { this.getNotUniqueErrorMessage(user)});
       } else {
         uniqueSet0.add(value0);
       }
@@ -610,27 +610,27 @@ public class UserPersistentImpl extends BasePersistent implements IUserPersisten
   /**
    * {@inheritDoc}
    */
-  public boolean isUnique(User fcsUser) {
+  public boolean isUnique(User user) {
     StringBuilder sql = new StringBuilder(COUNT_BASE_SQL).append(" AND ");
     sql.append('(');
     sql.append('(');
     sql.append(TABLE_ALIAS).append('.').append(COLUMN_ACCOUNT).append(" = ").append(':').append(COLUMNS_PARAMETER.get(COLUMN_ACCOUNT));
     sql.append(')');
     sql.append(" ) ");
-    if (!PropertyUtilities.asNullValue(fcsUser.getUserId())) {
+    if (!PropertyUtilities.asNullValue(user.getUserId())) {
       sql.append(" AND ").append(TABLE_ALIAS).append('.').append(COLUMN_USER_ID).append(" <> :").append(COLUMNS_PARAMETER.get(COLUMN_USER_ID));
     }
-    long count = this.namedParameterJdbcTemplate.queryForObject(sql.toString(), new BeanPropertySqlParameterSource(fcsUser), Long.class);
+    long count = this.namedParameterJdbcTemplate.queryForObject(sql.toString(), new BeanPropertySqlParameterSource(user), Long.class);
     return count < 1;
   }
     
   /**
    * {@inheritDoc}
    */
-  public String getNotUniqueErrorMessage(User fcsUser) {
+  public String getNotUniqueErrorMessage(User user) {
     StringBuilder message = new StringBuilder("用户已经存在。");
     message.append('[');
-    message.append("用户账号").append(':').append(fcsUser.getAccount());
+    message.append("用户账号").append(':').append(user.getAccount());
     message.append(']');
     return message.toString();
   }

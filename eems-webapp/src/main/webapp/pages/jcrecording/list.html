@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企业员工管理系统</title>
+<link type="text/css" href="../../bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link type="text/css" href="../../bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+<link type="text/css" href="../../css/theme.css" rel="stylesheet">
+<link type="text/css" href="../../images/icons/css/font-awesome.css"
+	rel="stylesheet">
+<link type="text/css"
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+	rel='stylesheet'>
+</head>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".navbar-inverse-collapse"> <i
+					class="icon-reorder shaded"></i></a><a class="brand" href="index.html">企业员工管理系统
+				</a>
+				<div class="nav-collapse collapse navbar-inverse-collapse">
+					<!--
+                        <ul class="nav nav-icons">
+                            <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
+                            <li><a href="#"><i class="icon-eye-open"></i></a></li>
+                            <li><a href="#"><i class="icon-bar-chart"></i></a></li>
+                        </ul>
+                        <form class="navbar-search pull-left input-append" action="#">
+                        <input type="text" class="span3">
+                        <button class="btn" type="button">
+                            <i class="icon-search"></i>
+                        </button>
+                        </form>
+                        -->
+					<ul class="nav pull-right">
+						<li class="nav-user dropdown"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown"> <img
+								src="../../images/user.png" class="nav-avatar" /> <span
+								id="admin_user">当前登录</span> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">修改密码</a></li>
+								<li class="divider"></li>
+								<li><a href="javascript:logout()">登出</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<!-- /.nav-collapse -->
+			</div>
+		</div>
+		<!-- /navbar-inner -->
+	</div>
+	<!-- /navbar -->
+	<div class="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="span3">
+					<div class="sidebar">
+						<ul class="widget widget-menu unstyled">
+							<li class="active"><a href="../../index.html"><i
+									class="menu-icon icon-dashboard"></i>主页 </a></li>
+						</ul>
+						<!--/.widget-nav-->
+
+
+						<ul class="widget widget-menu unstyled">
+							<li><a href="../staff/list.html"><i
+									class="menu-icon icon-bold"></i>员工信息 </a></li>
+							<li><a href="list.html"><i
+									class="menu-icon icon-book"></i>奖惩记录 </a></li>
+							<li><a href="../wage/list.html"><i class="menu-icon icon-paste"></i>结算工资
+							</a></li>
+						</ul>
+						<!--/.widget-nav-->
+						<ul class="widget widget-menu unstyled">
+							<li><a href="../user/list.html"><i class="menu-icon icon-signout"></i>账号管理
+							</a></li>
+							<li><a href="javascript:logout()"><i class="menu-icon icon-signout"></i>注销登录
+							</a></li>
+						</ul>
+					</div>
+					<!--/.sidebar-->
+				</div>
+				<!--/.span3-->
+				<div class="span9">
+					<div class="content">
+
+						<div class="module">
+							<div class="module-head">
+								<h3>奖惩记录列表</h3>
+							</div>
+							<div style="margin-top:15px;margin-left:15px">
+								<a class="btn btn-small btn-primary" href="edit.html">新增记录</a>
+								<a class="btn btn-small btn-primary" href="javascript:clean_jc()">清空奖惩记录</a>
+							</div>
+							<div class="module-body table">
+								<table cellpadding="0" cellspacing="0" border="0"
+									class="datatable-1 table table-bordered table-striped	 display"
+									width="100%">
+									<thead>
+										<tr>
+											<th>员工姓名</th>
+											<th>奖惩类型</th>
+											<th>奖惩金额</th>
+											<th>创建时间</th>
+											<th width="10%">操作</th>
+										</tr>
+									</thead>
+									<tbody id="list_body">
+										
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>员工姓名</th>
+											<th>奖惩类型</th>
+											<th>奖惩金额</th>
+											<th>创建时间</th>
+											<th width="10%">操作</th>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+						<!--/.module-->
+
+					</div>
+					<!--/.content-->
+				</div>
+				<!--/.span9-->
+			</div>
+		</div>
+		<!--/.container-->
+	</div>
+	<!--/.wrapper-->
+	<div class="footer">
+		<div class="container">
+			<b class="copyright">&copy; Power by liuxiaobin </b>刘晓宾的毕业设计
+		</div>
+	</div>
+	
+	<!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">员工详情</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="name"></p>
+                    <p id="sex"></p>
+                    <p id="phonen"></p>
+                    <p id="address"></p>
+                    <p id="wechatn"></p>
+                    <p id="qqn"></p>
+                    <p id="createTimestamps"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+	<script src="../../scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="../../scripts/jquery-ui-1.10.1.custom.min.js"
+		type="text/javascript"></script>
+	<script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../scripts/datatables/jquery.dataTables.js"></script>
+	<script src="../../scripts/js-tools.js" type="text/javascript"></script>
+	<script src="../../scripts/authorize.js" type="text/javascript"></script>
+
+	<script>
+		function clean_jc(){
+			$.ajax({
+		        type: "GET",
+		        url: context_path + "/api/business/clean_jc",
+		        contentType: 'application/json',
+		        dataType: "json",
+		        success: function (data) {
+		        		if(data.successResponse){
+		        			location.reload();
+		            }else{
+		                alert(data.message);
+		            }
+		        }
+		    })
+		}
+		function initDataTables(){
+			$(document).ready(function() {
+				$('.datatable-1').dataTable({
+					stateSave: true,
+			    		language: {
+			    			"emptyTable":     "数据库中没有数据",//表格没有数据时展示的文字
+			    		    "info":           "从 _START_ 条到第 _END_ 条，共 _TOTAL_ 条数据",
+			    		    "infoEmpty":      "没有数据",
+			    		    "infoFiltered":   "(从 _MAX_ 条数据中过滤)",
+			    		    "infoPostFix":    "",
+			    		    "thousands":      ",",// thousands separator, 千位数字分隔符
+			    		    "lengthMenu":     "每页显示 _MENU_ 条",
+			    		    "loadingRecords": "加载中...",// 加载数据过程中展示的文字
+			    		    "processing":     "处理中...",// 处理过程中展示的文字
+			    		    "search":         "搜索:",// 搜索框提示文字
+			    		    "zeroRecords":    "没有匹配数据", // 没有找到匹配数据时的提示文字
+			    	    },
+				});
+				$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+				$('.dataTables_paginate > a').wrapInner('<span />');
+				$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+				$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+			} );
+		}
+		function loadList(callback){
+			$.ajax({
+		        type: "GET",
+		        url: context_path + "/api/jc_recording",
+		        contentType: 'application/json',
+		        dataType: "json",
+		        success: function (data) {
+		        		if(data.successResponse){
+		        			if(data.datas.length > 0){
+		        				var html = "";
+			            		for(var i=0; i<data.datas.length; i++){
+			            	   		html = html + '<tr>';
+			            	   		html = html + '<td>'+data.datas[i].staffName+'</td>';
+			            	   		html = html + '<td>'+jcChange(data.datas[i].jcType)+'</td>';
+			            	   		html = html + '<td>'+data.datas[i].amount+'￥</td>';
+			            	   		html = html + '<td>'+format(data.datas[i].createTimestamps)+'</td>';
+			            	   		html = html + '<td>';
+	    		            	   		html = html + '<table>'
+	    		            	   		html = html + '<tr>'
+	    		            	   		html = html + '<td><a type="button" href="edit.html?recording_id='+data.datas[i].recordingId+'" class="btn btn-default btn-xs">修改</a></td>'
+	    		            	   		html = html + '<td><a type="button" href="javascript:deleteRecording(\''+data.datas[i].recordingId+'\')"  class="btn btn-danger btn-xs">删除</a></td>'
+	    		            	   		html = html + '</tr>'
+	    		            	   		html = html + '</table>'
+	    		            	   		html = html + '</td>'
+	    		            	   		html = html + '</tr>';
+			            		}
+			            		$('#list_body').html(html);
+		        			}
+		        			callback();
+		            }else{
+		                alert(data.message);
+		                callback();
+		            }
+		        }
+		    })
+		}
+		function deleteRecording(recordingId){
+			var result = confirm("确认删除此条记录吗？")
+			if(result == true){
+				$.ajax({
+			        type: "DELETE",
+			        url: context_path + "/api/jc_recording/single",
+			        contentType: 'application/json',
+			        dataType: "json",
+			        data:JSON.stringify({recordingId:recordingId}),
+			        success: function (data) {
+			        		if(data.successResponse){
+			        			alert('删除成功');
+			        			location.reload();
+			            }else{
+			                alert(data.message);
+			            }
+			        }
+			    })
+			}
+		}
+		$(function() {
+			authorize();
+			loadList(initDataTables);
+		})
+	</script>
+
+</body>

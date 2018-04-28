@@ -1,4 +1,4 @@
--- 企业员工管理系统 Enterprise Employee Management System
+-- 企业员工管理系统 Enterprise Employee Management System --
 CREATE DATABASE eems DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE eems;
 
@@ -23,9 +23,11 @@ drop table if exists EEMS_STAFF;
 create table EEMS_STAFF(
     STAFF_ID                      char(36)            character set utf8 collate utf8_bin    not null comment '员工编号',
     NAME                          varchar(32)         character set utf8 collate utf8_bin    not null comment '员工名称',
+    SEX                           char(1)             character set utf8 collate utf8_bin    not null comment '员工性别',
     ACCOUNT                       varchar(32)         character set utf8 collate utf8_bin        null comment '员工账号',
     PASSWORD                      varchar(32)         character set utf8 collate utf8_bin        null comment '员工密码', 
-    PHONEN                        varchar(16)         character set utf8 collate utf8_bin        null comment '员工电话', 
+    PHONEN                        varchar(16)         character set utf8 collate utf8_bin    not null comment '员工电话', 
+    BASE_AMOUNT                   decimal(20,4)       character set utf8 collate utf8_bin    not null comment '基本工资',
     ADDRESS                       varchar(128)        character set utf8 collate utf8_bin        null comment '员工地址',
     WECHATN                       varchar(16)         character set utf8 collate utf8_bin        null comment '员工微信',
     QQN                           varchar(16)         character set utf8 collate utf8_bin        null comment '员工QQ',      

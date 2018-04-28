@@ -9,7 +9,7 @@ import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
 import com.liuxiaobin.eems.entity.User;
 import java.util.Collection;
-import com.liuxiaobin.eems.search.FcsUserSearch;
+import com.liuxiaobin.eems.search.UserSearch;
 
 /**
  * 该接口是对以下对象操作的接口。
@@ -19,7 +19,7 @@ import com.liuxiaobin.eems.search.FcsUserSearch;
  */
 public interface IUserService {
 
-  // FcsUserPersistentImpl
+  // UserPersistentImpl
   /**
    * 保存单个用户对象。
    *
@@ -27,7 +27,7 @@ public interface IUserService {
    *            要保存的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void saveFcsUser(User fcsUser) throws EemsException;
+  public void saveUser(User fcsUser) throws EemsException;
 
   /**
    * 批量保存用户对象。
@@ -36,7 +36,7 @@ public interface IUserService {
    *            要保存的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException;
+  public void batchSaveUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 修改单个用户对象。
@@ -46,7 +46,7 @@ public interface IUserService {
    *            要修改的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void updateFcsUser(User fcsUser) throws EemsException;
+  public void updateUser(User fcsUser) throws EemsException;
 
   /**
    * 批量修改用户对象。
@@ -56,7 +56,7 @@ public interface IUserService {
    *            要修改的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException;
+  public void batchUpdateUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 删除用户对象。
@@ -66,7 +66,7 @@ public interface IUserService {
    *            要删除的对象。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void removeFcsUser(User fcsUser) throws EemsException;
+  public void removeUser(User fcsUser) throws EemsException;
 
   /**
    * 批量删除用户对象。
@@ -76,17 +76,17 @@ public interface IUserService {
    *            要删除的对象集合。
    * @throws EemsException 运行出错会抛出该异常
    */
-  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException;
+  public void batchRemoveUser(Collection<User> fcsUsers) throws EemsException;
 
   /**
    * 根据主键查询用户对象，如果未找到将返回NULL。
    * 
-   * @param userId
+   * @param Id
    *            要查询的主键。
    * @return 查询到的对象如果没有查到返回null
    * @throws EemsException 运行出错会抛出该异常
    */
-  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException;
+  public User getUserByPrimaryKey(java.lang.String Id) throws EemsException;
 
   /**
    * 根据条件进行查询用户对象个数。
@@ -97,7 +97,7 @@ public interface IUserService {
    * @return 查询到的数据条数
    * @throws EemsException 运行出错会抛出该异常
    */
-  public Long getCountFcsUser(FcsUserSearch fcsUserSearch) throws EemsException;
+  public Long getCountUser(UserSearch fcsUserSearch) throws EemsException;
 
   /**
    * 查询所有用户对象。
@@ -105,7 +105,7 @@ public interface IUserService {
    * @return 查询到的对象集合如果没有查到返回null或者空集合
    * @throws EemsException 运行出错会抛出该异常
    */
-  public Collection<User> getAllFcsUser() throws EemsException;
+  public Collection<User> getAllUser() throws EemsException;
 
   /**
    * 分页查询用户对象。
@@ -115,7 +115,7 @@ public interface IUserService {
    * @return 当前面的对象集合以及总数据量
    * @throws EemsException 运行出错会抛出该异常
    */
-  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException;
+  public PageRange<User> paginationGetAllUser(PageSerachParameters page) throws EemsException;
 
   /**
    * 根据条件进行查询用户对象。
@@ -126,7 +126,7 @@ public interface IUserService {
    * @return 查询到的对象集合如果没有查到返回null或者空集合
    * @throws EemsException 运行出错会抛出该异常
    */
-  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException;
+  public Collection<User> searchUser(UserSearch fcsUserSearch) throws EemsException;
 
   /**
    * 根据条件进行，分页查询用户对象。
@@ -139,6 +139,6 @@ public interface IUserService {
    * @return 当前面的对象集合以及总数据量
    * @throws EemsException 运行出错会抛出该异常
    */
-  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException;
+  public PageRange<User> paginationSearchUser(UserSearch fcsUserSearch, PageSerachParameters page) throws EemsException;
 
 }

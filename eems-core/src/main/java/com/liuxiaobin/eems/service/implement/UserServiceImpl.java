@@ -11,7 +11,7 @@ import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
 import com.liuxiaobin.eems.entity.User;
 import java.util.Collection;
-import com.liuxiaobin.eems.search.FcsUserSearch;
+import com.liuxiaobin.eems.search.UserSearch;
 import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.nmxpsoft.base.commons.utilities.StringUtilities;
 
@@ -29,34 +29,34 @@ public class UserServiceImpl implements IUserService {
   private static final org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(UserServiceImpl.class);
 
   @javax.annotation.Resource(name = "com.liuxiaobin.eems.UserPersistent")
-  private IUserPersistent fcsUserPersistent;
+  private IUserPersistent userPersistent;
 
   @org.springframework.beans.factory.annotation.Autowired
   protected org.springframework.context.ApplicationEventPublisher publisher;
-  // FcsUserPersistentImpl
+  // UserPersistentImpl
   /**
    * {@inheritDoc}
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void saveFcsUser(User fcsUser) throws EemsException {
+  public void saveUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.saveFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserService.saveUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
-      fcsUser.clearPrimaryKeyValue();
-      fcsUser.setCreateTimestamps(PropertyUtilities.currentTimeMillis());
-      if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-        fcsUser.setUserId(StringUtilities.getUUID());
+      user.clearPrimaryKeyValue();
+      user.setCreateTimestamps(PropertyUtilities.currentTimeMillis());
+      if (PropertyUtilities.asNullValue(user.getUserId())) {
+        user.setUserId(StringUtilities.getUUID());
       }
-      if (!fcsUserPersistent.isUnique(fcsUser)) {
-        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { fcsUserPersistent.getNotUniqueErrorMessage(fcsUser)});
+      if (!userPersistent.isUnique(user)) {
+        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { userPersistent.getNotUniqueErrorMessage(user)});
       }
-      fcsUserPersistent.saveFcsUser(fcsUser);
+      userPersistent.saveUser(user);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -75,29 +75,29 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchSaveFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchSaveUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.batchSaveFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserService.batchSaveUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      for(User fcsUser : fcsUsers) {
-        if(PropertyUtilities.isEmpty(fcsUser) || fcsUser.selfIsNull()) {
-          throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      for(User user : users) {
+        if(PropertyUtilities.isEmpty(user) || user.selfIsNull()) {
+          throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
         }
-        fcsUser.clearPrimaryKeyValue();
-        fcsUser.setCreateTimestamps(PropertyUtilities.currentTimeMillis());
-        if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-          fcsUser.setUserId(StringUtilities.getUUID());
+        user.clearPrimaryKeyValue();
+        user.setCreateTimestamps(PropertyUtilities.currentTimeMillis());
+        if (PropertyUtilities.asNullValue(user.getUserId())) {
+          user.setUserId(StringUtilities.getUUID());
         }
-        if (!fcsUserPersistent.isUnique(fcsUser)) {
-          throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { fcsUserPersistent.getNotUniqueErrorMessage(fcsUser)});
+        if (!userPersistent.isUnique(user)) {
+          throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { userPersistent.getNotUniqueErrorMessage(user)});
         }
       }
-      fcsUserPersistent.batchSaveFcsUser(fcsUsers);
+      userPersistent.batchSaveUser(users);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -116,26 +116,26 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void updateFcsUser(User fcsUser) throws EemsException {
+  public void updateUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.updateFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserService.updateUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
-      if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
+      if (PropertyUtilities.asNullValue(user.getUserId())) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
       }
-      User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
-      if (fcsUserOld == null) {
+      User userOld = userPersistent.getUserByPrimaryKey(user.getUserId());
+      if (userOld == null) {
         throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
       }
-      if (!fcsUserPersistent.isUnique(fcsUser)) {
-        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { fcsUserPersistent.getNotUniqueErrorMessage(fcsUser)});
+      if (!userPersistent.isUnique(user)) {
+        throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { userPersistent.getNotUniqueErrorMessage(user)});
       }
-      fcsUserPersistent.updateFcsUser(fcsUser);
+      userPersistent.updateUser(user);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -154,32 +154,32 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchUpdateFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchUpdateUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.batchUpdateFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserService.batchUpdateUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      fcsUserPersistent.isUnique(fcsUsers);
-      for(User fcsUser : fcsUsers) {
-        if(PropertyUtilities.isEmpty(fcsUser) || fcsUser.selfIsNull()) {
-          throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      userPersistent.isUnique(users);
+      for(User user : users) {
+        if(PropertyUtilities.isEmpty(user) || user.selfIsNull()) {
+          throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
         }
-        if (PropertyUtilities.asNullValue(fcsUser.getUserId())) {
+        if (PropertyUtilities.asNullValue(user.getUserId())) {
           throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
         }
-        User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
-        if (fcsUserOld == null) {
+        User userOld = userPersistent.getUserByPrimaryKey(user.getUserId());
+        if (userOld == null) {
           throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
         }
-        if (!fcsUserPersistent.isUnique(fcsUser)) {
-          throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { fcsUserPersistent.getNotUniqueErrorMessage(fcsUser)});
+        if (!userPersistent.isUnique(user)) {
+          throw EemsException.getException(EemsException.FW_DATA_CONTENTION_ERROR, new String[] { userPersistent.getNotUniqueErrorMessage(user)});
         }
       }
-      fcsUserPersistent.batchUpdateFcsUser(fcsUsers);
+      userPersistent.batchUpdateUser(users);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -198,29 +198,29 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void removeFcsUser(User fcsUser) throws EemsException {
+  public void removeUser(User user) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.removeFcsUser ");
-      log.debug("parameter fcsUser is : " + fcsUser);
+      log.debug("Staring call UserService.removeUser ");
+      log.debug("parameter user is : " + user);
     }
     try {
-      if (fcsUser == null || fcsUser.selfIsNull()) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUser " );
+      if (user == null || user.selfIsNull()) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " user " );
       }
-      java.util.Set<User> deleteFcsUsers = new java.util.LinkedHashSet<>();
-      if (!PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-        User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
-        if (fcsUserOld == null ) {
+      java.util.Set<User> deleteUsers = new java.util.LinkedHashSet<>();
+      if (!PropertyUtilities.asNullValue(user.getUserId())) {
+        User userOld = userPersistent.getUserByPrimaryKey(user.getUserId());
+        if (userOld == null ) {
           throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
         }
-        deleteFcsUsers.add(fcsUserOld);
+        deleteUsers.add(userOld);
       } else {
-        FcsUserSearch fcsUserSearch = new FcsUserSearch();
-        fcsUserSearch.setEntity(fcsUser);
-        deleteFcsUsers.addAll(fcsUserPersistent.searchFcsUser(fcsUserSearch));
+        UserSearch userSearch = new UserSearch();
+        userSearch.setEntity(user);
+        deleteUsers.addAll(userPersistent.searchUser(userSearch));
       }
-      if (PropertyUtilities.isNotEmpty(deleteFcsUsers)) {
-        fcsUserPersistent.batchRemoveFcsUser(deleteFcsUsers);
+      if (PropertyUtilities.isNotEmpty(deleteUsers)) {
+        userPersistent.batchRemoveUser(deleteUsers);
       }
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
@@ -240,31 +240,31 @@ public class UserServiceImpl implements IUserService {
    */
   @Override
   @org.springframework.transaction.annotation.Transactional(propagation = org.springframework.transaction.annotation.Propagation.REQUIRED, readOnly = false)
-  public void batchRemoveFcsUser(Collection<User> fcsUsers) throws EemsException {
+  public void batchRemoveUser(Collection<User> users) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.batchRemoveFcsUser ");
-      log.debug("parameter fcsUsers is : " + fcsUsers);
+      log.debug("Staring call UserService.batchRemoveUser ");
+      log.debug("parameter users is : " + users);
     }
     try {
-      if (PropertyUtilities.isEmpty(fcsUsers)) {
-        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " fcsUsers " );
+      if (PropertyUtilities.isEmpty(users)) {
+        throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " users " );
       }
-      java.util.Set<User> deleteFcsUsers = new java.util.LinkedHashSet<>();
-      for(User fcsUser : fcsUsers) {
-        if (!PropertyUtilities.asNullValue(fcsUser.getUserId())) {
-          User fcsUserOld = fcsUserPersistent.getFcsUserByPrimaryKey(fcsUser.getUserId());
-          if (fcsUserOld == null ) {
+      java.util.Set<User> deleteUsers = new java.util.LinkedHashSet<>();
+      for(User user : users) {
+        if (!PropertyUtilities.asNullValue(user.getUserId())) {
+          User userOld = userPersistent.getUserByPrimaryKey(user.getUserId());
+          if (userOld == null ) {
             throw EemsException.getException(EemsException.FW_UPDATE_DATA_NOT_FIND_ERROR);
           }
-          deleteFcsUsers.add(fcsUserOld);
+          deleteUsers.add(userOld);
         } else {
-          FcsUserSearch fcsUserSearch = new FcsUserSearch();
-          fcsUserSearch.setEntity(fcsUser);
-          deleteFcsUsers.addAll(fcsUserPersistent.searchFcsUser(fcsUserSearch));
+          UserSearch userSearch = new UserSearch();
+          userSearch.setEntity(user);
+          deleteUsers.addAll(userPersistent.searchUser(userSearch));
         }
       }
-      if (PropertyUtilities.isNotEmpty(deleteFcsUsers)) {
-        fcsUserPersistent.batchRemoveFcsUser(deleteFcsUsers);
+      if (PropertyUtilities.isNotEmpty(deleteUsers)) {
+        userPersistent.batchRemoveUser(deleteUsers);
       }
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
@@ -283,16 +283,16 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public User getFcsUserByPrimaryKey(java.lang.String userId) throws EemsException {
+  public User getUserByPrimaryKey(java.lang.String userId) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.getFcsUserByPrimaryKey ");
+      log.debug("Staring call UserService.getUserByPrimaryKey ");
       log.debug("parameter userId is : " + userId);
     }
     try {
       if (PropertyUtilities.asNullValue(userId)) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " userId " );
       }
-      return fcsUserPersistent.getFcsUserByPrimaryKey(userId);
+      return userPersistent.getUserByPrimaryKey(userId);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -310,13 +310,13 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public Long getCountFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Long getCountUser(UserSearch userSearch) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.getCountFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserService.getCountUser ");
+      log.debug("parameter userSearch is : " + userSearch);
     }
     try {
-      return fcsUserPersistent.getCountFcsUser(fcsUserSearch);
+      return userPersistent.getCountUser(userSearch);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -334,12 +334,12 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public Collection<User> getAllFcsUser() throws EemsException {
+  public Collection<User> getAllUser() throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.getAllFcsUser ");
+      log.debug("Staring call UserService.getAllUser ");
     }
     try {
-      return fcsUserPersistent.getAllFcsUser();
+      return userPersistent.getAllUser();
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -357,16 +357,16 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public PageRange<User> paginationGetAllFcsUser(PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationGetAllUser(PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.paginationGetAllFcsUser ");
+      log.debug("Staring call UserService.paginationGetAllUser ");
       log.debug("parameter page is : " + page);
     }
     try {
       if (page == null) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " page " );
       }
-      return fcsUserPersistent.paginationGetAllFcsUser(page);
+      return userPersistent.paginationGetAllUser(page);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -384,13 +384,13 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public Collection<User> searchFcsUser(FcsUserSearch fcsUserSearch) throws EemsException {
+  public Collection<User> searchUser(UserSearch userSearch) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.searchFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserService.searchUser ");
+      log.debug("parameter userSearch is : " + userSearch);
     }
     try {
-      return fcsUserPersistent.searchFcsUser(fcsUserSearch);
+      return userPersistent.searchUser(userSearch);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);
@@ -408,17 +408,17 @@ public class UserServiceImpl implements IUserService {
    * {@inheritDoc}
    */
   @Override
-  public PageRange<User> paginationSearchFcsUser(FcsUserSearch fcsUserSearch, PageSerachParameters page) throws EemsException {
+  public PageRange<User> paginationSearchUser(UserSearch userSearch, PageSerachParameters page) throws EemsException {
     if (log.isDebugEnabled()) {
-      log.debug("Staring call FcsUserService.paginationSearchFcsUser ");
-      log.debug("parameter fcsUserSearch is : " + fcsUserSearch);
+      log.debug("Staring call UserService.paginationSearchUser ");
+      log.debug("parameter userSearch is : " + userSearch);
       log.debug("parameter page is : " + page);
     }
     try {
       if (page == null) {
         throw EemsException.getException(EemsException.FW_PARAMETER_IS_NULL_ERROR, " page " );
       }
-      return fcsUserPersistent.paginationSearchFcsUser(fcsUserSearch, page);
+      return userPersistent.paginationSearchUser(userSearch, page);
     } catch (EemsException e) {
       if (log.isErrorEnabled()) {
         log.error(e);

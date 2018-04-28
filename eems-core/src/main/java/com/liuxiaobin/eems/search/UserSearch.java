@@ -5,6 +5,7 @@
 package com.liuxiaobin.eems.search;
 
 import java.io.Serializable;
+
 import com.liuxiaobin.eems.entity.User;
 
 /**
@@ -13,7 +14,7 @@ import com.liuxiaobin.eems.entity.User;
  * @author liuxiaobin
  * @version 0.0.1
  */
-public final class FcsUserSearch implements Serializable {
+public final class UserSearch implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
