@@ -10,9 +10,24 @@
   
   <dependencies>
     <dependency>
-      <groupId>com.liuxiaobin</groupId>
-      <artifactId>eems-core</artifactId>
-      <version>0.0.1-RELEASE</version>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-web-springmvc</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-service-spring</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-persistent-jdbc</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.nmxpsoft.groupId}</groupId>
+      <artifactId>nmxpsoft-base-web-spring-jxls</artifactId>
+      <version>${project.nmxpsoft.base.version}</version>
     </dependency>
   </dependencies>
   
