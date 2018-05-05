@@ -1,15 +1,12 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.persistent;
 
+import java.util.Collection;
+
+import com.liuxiaobin.eems.commons.exception.EemsException;
+import com.liuxiaobin.eems.entity.Wage;
+import com.liuxiaobin.eems.search.WageSearch;
 import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.Wage;
-import com.liuxiaobin.eems.commons.exception.EemsException;
-import java.util.Collection;
-import com.liuxiaobin.eems.search.WageSearch;
 
 /**
  * 该接口是完成对数据库表EEMS_WAGE的持久化申明，包括对该表的增、删、改、查等基本操作的接口定义。

@@ -1,19 +1,16 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.service.implement;
 
-import com.liuxiaobin.eems.service.IUserService;
-import com.liuxiaobin.eems.commons.exception.EemsException;
-import com.liuxiaobin.eems.persistent.IUserPersistent;
-import com.nmxpsoft.base.commons.vo.PageRange;
-import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.User;
 import java.util.Collection;
+
+import com.liuxiaobin.eems.commons.exception.EemsException;
+import com.liuxiaobin.eems.entity.User;
+import com.liuxiaobin.eems.persistent.IUserPersistent;
 import com.liuxiaobin.eems.search.UserSearch;
+import com.liuxiaobin.eems.service.IUserService;
 import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.nmxpsoft.base.commons.utilities.StringUtilities;
+import com.nmxpsoft.base.commons.vo.PageRange;
+import com.nmxpsoft.base.commons.vo.PageSerachParameters;
 
 /**
  * 该类是以下对象操作的业务具休实现。

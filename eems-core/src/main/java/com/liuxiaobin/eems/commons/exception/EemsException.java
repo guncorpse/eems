@@ -1,14 +1,11 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.commons.exception;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import com.nmxpsoft.base.commons.exception.NmXpsoftBaseException;
+
 import com.nmxpsoft.base.commons.exception.ErrorMessageUtilities;
+import com.nmxpsoft.base.commons.exception.NmXpsoftBaseException;
 
 /**
  * 异常类。

@@ -1,27 +1,25 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.persistent.implement;
 
-import com.nmxpsoft.base.commons.vo.PageRange;
-import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
-import com.nmxpsoft.base.persistent.jdbc.BasePersistent;
-import com.nmxpsoft.base.security.SecurityContext;
-import com.nmxpsoft.base.commons.vo.Sort;
-import com.liuxiaobin.eems.entity.Staff;
-import com.liuxiaobin.eems.persistent.IStaffPersistent;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
+
 import com.liuxiaobin.eems.commons.exception.EemsException;
-import java.util.Collection;
+import com.liuxiaobin.eems.entity.Staff;
+import com.liuxiaobin.eems.persistent.IStaffPersistent;
 import com.liuxiaobin.eems.search.StaffSearch;
+import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
+import com.nmxpsoft.base.commons.vo.PageRange;
+import com.nmxpsoft.base.commons.vo.PageSerachParameters;
+import com.nmxpsoft.base.commons.vo.Sort;
+import com.nmxpsoft.base.persistent.jdbc.BasePersistent;
+import com.nmxpsoft.base.security.SecurityContext;
 
 /**
  * 该类是完成对数据库表EEMS_STAFF的持久化实现，包括对该表的增、删、改、查等基本操作的的具休实现。

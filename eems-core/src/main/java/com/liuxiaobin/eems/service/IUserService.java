@@ -1,15 +1,12 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.service;
 
+import java.util.Collection;
+
 import com.liuxiaobin.eems.commons.exception.EemsException;
+import com.liuxiaobin.eems.entity.User;
+import com.liuxiaobin.eems.search.UserSearch;
 import com.nmxpsoft.base.commons.vo.PageRange;
 import com.nmxpsoft.base.commons.vo.PageSerachParameters;
-import com.liuxiaobin.eems.entity.User;
-import java.util.Collection;
-import com.liuxiaobin.eems.search.UserSearch;
 
 /**
  * 该接口是对以下对象操作的接口。

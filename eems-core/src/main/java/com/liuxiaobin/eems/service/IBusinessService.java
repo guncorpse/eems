@@ -3,7 +3,6 @@ package com.liuxiaobin.eems.service;
 import java.util.Collection;
 
 import com.liuxiaobin.eems.commons.exception.EemsException;
-import com.liuxiaobin.eems.entity.Staff;
 import com.liuxiaobin.eems.entity.User;
 import com.liuxiaobin.eems.entity.Wage;
 

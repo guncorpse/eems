@@ -1,27 +1,25 @@
-/*
- * Copyright (c) 2017, 2026, Nmxpsoft and Nmgzhigang and/or its affiliates. All rights reserved.
- * Nmxpsoft and  Nmgzhigang PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.liuxiaobin.eems.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.liuxiaobin.eems.commons.exception.EemsException;
 import com.liuxiaobin.eems.entity.User;
 import com.liuxiaobin.eems.search.UserSearch;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.nmxpsoft.web.controller.springmvc.BaseController;
-import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.liuxiaobin.eems.service.IUserService;
+import com.nmxpsoft.base.commons.utilities.PropertyUtilities;
 import com.nmxpsoft.base.commons.vo.CommonParameters;
-import org.springframework.web.bind.annotation.RequestMethod;
-import com.nmxpsoft.base.commons.vo.ResponseRange;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.List;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.nmxpsoft.base.commons.vo.PageSerachParameters;
 import com.nmxpsoft.base.commons.vo.PageRange;
+import com.nmxpsoft.base.commons.vo.PageSerachParameters;
+import com.nmxpsoft.base.commons.vo.ResponseRange;
+import com.nmxpsoft.web.controller.springmvc.BaseController;
 
 /**
  * 该类是用户控制器。
